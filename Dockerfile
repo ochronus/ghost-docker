@@ -20,9 +20,9 @@ RUN curl https://npmjs.org/install.sh | clean=no sh
 # Add Ghost zip to image
 ADD ./ghost-0.3.3-pimped.zip /tmp/
 # Unzip Ghost zip to WORKDIR
-RUN unzip -uo /tmp/ghost-0.3.3.zip -d $WORKDIR
+RUN unzip -uo /tmp/ghost-0.3.3-pimped.zip -d .
 # Add custom config js to WORKDIR
-ADD ./config.template.js $WORKDIR/config.js
+ADD ./config.template.js config.js
 # Install Ghost with NPM
 RUN cd /data/ghost/ && npm install --production
 
