@@ -7,6 +7,7 @@ WORKDIR /data/ghost
 
 ENV WORKDIR /data/ghost
 ENV DEBIAN_FRONTEND noninteractive
+ENV DISQUS_SHORTNAME antipatikus
 # Install dependencies for Node.js installation
 RUN apt-get install -y --force-yes python g++ make software-properties-common curl dialog
 RUN add-apt-repository ppa:chris-lea/node.js
@@ -22,11 +23,11 @@ ADD ./ghost-0.3.3-pimped.zip /tmp/
 # Unzip Ghost zip to WORKDIR
 RUN unzip -uo /tmp/ghost-0.3.3-pimped.zip -d .
 # Add custom config js to WORKDIR
-ADD ./config.template.js config.js
+ADD ./config.template.js /data/ghost/config.js
 # Install Ghost with NPM
 RUN npm install --production
 
-RUN sed -i s/VAR_DISQUS_SHORTNAME/$DISQUS_SHORTNAME/g $WORKDIR/content/themes/casper/post.hbs
+RUN sed -i s/VAR_DISQUS_SHORTNAME/${DISQUS_SHORTNAME}/g content/themes/casper/post.hbs
 
 # Expose port 2368
 EXPOSE 2368
