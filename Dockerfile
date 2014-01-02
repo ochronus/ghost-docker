@@ -7,7 +7,9 @@ WORKDIR /data/ghost
 
 ENV WORKDIR /data/ghost
 ENV DEBIAN_FRONTEND noninteractive
-ENV DISQUS_SHORTNAME antipatikus
+# EDIT THIS
+ENV DISQUS_SHORTNAME 'THIS IS MY SHORTNAME'
+
 # Install dependencies for Node.js installation
 RUN apt-get install -y --force-yes python g++ make software-properties-common curl dialog
 RUN add-apt-repository ppa:chris-lea/node.js
