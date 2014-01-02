@@ -24,7 +24,7 @@ RUN unzip -uo /tmp/ghost-0.3.3-pimped.zip -d .
 # Add custom config js to WORKDIR
 ADD ./config.template.js config.js
 # Install Ghost with NPM
-RUN cd /data/ghost/ && npm install --production
+RUN npm install --production
 
 RUN sed -i s/VAR_DISQUS_SHORTNAME/$DISQUS_SHORTNAME/g $WORKDIR/content/themes/casper/post.hbs
 
